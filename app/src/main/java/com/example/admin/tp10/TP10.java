@@ -12,6 +12,7 @@ import java.util.Stack;
 
 public class TP10 extends AppCompatActivity {
 
+    public static final String POINT = ".";
     Button boutonclear;
     Button bouton0;
     Button boutonback;
@@ -28,13 +29,17 @@ public class TP10 extends AppCompatActivity {
     Button bouton8;
     Button bouton9;
     Button boutondiv;
+    Button boutonvir;
+    Button boutonpop;
+    Button boutonswap;
+    Button boutonfois;
     TextView champtexte;
     TextView pile1;
     TextView pile2;
     TextView pile3;
     TextView pile4;
 
-    Stack<Integer> pile = new Stack<>();
+    Stack<Double> pile = new Stack<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,14 @@ public class TP10 extends AppCompatActivity {
         setContentView(R.layout.activity_tp10);
 
         //on initialise l'activité
-
+        boutonvir = (Button) findViewById(R.id.buttonvir);
+        boutonvir.setText(R.string.buttonvir);
+        boutonpop = (Button) findViewById(R.id.buttonpop);
+        boutonpop.setText(R.string.buttonpop);
+        boutonswap = (Button) findViewById(R.id.buttonswap);
+        boutonswap.setText(R.string.buttonswap);
+        boutonfois = (Button) findViewById(R.id.buttonfois);
+        boutonfois.setText(R.string.buttonfois);
         boutonclear = (Button) findViewById(R.id.buttonclear);
         boutonclear.setText(R.string.buttonclear);
         bouton0 = (Button) findViewById(R.id.button0);
@@ -142,12 +154,50 @@ public class TP10 extends AppCompatActivity {
             }
         });
 
+        boutonvir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = champtexte.getText().toString();
+                if(s.length()==0) {
+                    champtexte.setText("0.");
+                }
+                else {
+                    if(!s.contains(POINT)) {
+                        champtexte.setText(s + POINT);
+                    }
+                }
+            }
+        });
+
         boutonenter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String s = champtexte.getText().toString();
                 if(s.length()!=0) {
-                    pile.push(Integer.parseInt(s));
+                    pile.push(Double.parseDouble(s));
                     champtexte.setText("");
+                }
+                //affichage des piles
+                refresh();
+            }
+        });
+
+        boutonpop.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if(pile.size()>=1) {
+                    pile.pop();
+                }
+                //affichage des piles
+                refresh();
+            }
+        });
+
+        boutonswap.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if(pile.size()>=2) {
+                    double var1 = pile.pop();
+                    double var2 = pile.pop();
+                    pile.push(var1);
+                    pile.push(var2);
                 }
                 //affichage des piles
                 refresh();
@@ -175,10 +225,10 @@ public class TP10 extends AppCompatActivity {
             public void onClick(View view) {
                 String s = champtexte.getText().toString();
                 if(s.length()!=0) {
-                    int var1 = pile.pop();
+                    double var1 = pile.pop();
                     champtexte.setText("");
-                    int var2 = Integer.parseInt(s);
-                    int var3 = var1 + var2;
+                    double var2 = Double.parseDouble(s);
+                    double var3 = var1 + var2;
                     pile.push(var3);
                     pile1.setText(String.valueOf(var3));
                 }
@@ -189,10 +239,10 @@ public class TP10 extends AppCompatActivity {
             public void onClick(View view) {
                 String s = champtexte.getText().toString();
                 if(s.length()!=0) {
-                    int var1 = pile.pop();
+                    double var1 = pile.pop();
                     champtexte.setText("");
-                    int var2 = Integer.parseInt(s);
-                    int var3 = var1 - var2;
+                    double var2 = Double.parseDouble(s);
+                    double var3 = var1 - var2;
                     pile.push(var3);
                     pile1.setText(String.valueOf(var3));
                 }
@@ -200,14 +250,28 @@ public class TP10 extends AppCompatActivity {
             }
         });
 
+        boutonfois.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                String s = champtexte.getText().toString();
+                if(s.length()!=0) {
+                    double var1 = pile.pop();
+                    champtexte.setText("");
+                    double var2 = Double.parseDouble(s);
+                    double var3 = var1 * var2;
+                    pile.push(var3);
+                    pile1.setText(String.valueOf(var3));
+                }
+            }
+        });
+
         boutondiv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String s = champtexte.getText().toString();
                 if(s.length()!=0) {
-                    int var1 = pile.pop();
+                    double var1 = pile.pop();
                     champtexte.setText("");
-                    int var2 = Integer.parseInt(s);
-                    int var3 = var1 / var2;
+                    double var2 = Double.parseDouble(s);
+                    double var3 = var1 / var2;
                     pile.push(var3);
                     pile1.setText(String.valueOf(var3));
                 }

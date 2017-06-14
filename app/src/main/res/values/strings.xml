@@ -16,4 +16,8 @@
     <string name="button8">8</string>
     <string name="button9">9</string>
     <string name="buttondiv">/</string>
+    <string name="buttonpop">Pop</string>
+    <string name="buttonswap">Swap</string>
+    <string name="buttonvir">,</string>
+    <string name="buttonfois">*</string>
 </resources>
