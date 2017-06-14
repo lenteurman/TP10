@@ -2,7 +2,7 @@
     <string name="app_name">TP10</string>
     <string name="buttonclear">Clear</string>
     <string name="button0">0</string>
-    <string name="buttonvir">,</string>
+    <string name="buttonback">Back</string>
     <string name="buttonenter">Enter</string>
     <string name="button1">1</string>
     <string name="button2">2</string>
@@ -16,5 +16,4 @@
     <string name="button8">8</string>
     <string name="button9">9</string>
     <string name="buttondiv">/</string>
-    <string name="champtexte">testtttest</string>
 </resources>
